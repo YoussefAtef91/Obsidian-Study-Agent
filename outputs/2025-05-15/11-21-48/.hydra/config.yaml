@@ -1,0 +1,5 @@
+vault:
+  path: r"C:\Users\Youssef Atef\Desktop\ISLP"
+llm:
+  model: gemini-1.5-flash
+  embedding_model: models/embedding-001

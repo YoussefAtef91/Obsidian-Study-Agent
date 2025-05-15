@@ -1,0 +1,6 @@
+vault:
+  name: "ISLP"
+
+llm:
+  model: "gemini-1.5-flash"
+  embedding_model: "models/embedding-001"

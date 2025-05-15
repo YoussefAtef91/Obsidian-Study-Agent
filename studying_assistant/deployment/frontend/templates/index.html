@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+</head>
+<body>
+    <form id="chat-form">
+        <input type="text" id="user-input" name="text" placeholder="Enter text here" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="answer">
+        <p id="response-text"></p>
+    </div>
+
+    <script>
+        const form = document.getElementById("chat-form");
+        const input = document.getElementById("user-input");
+        const responseText = document.getElementById("response-text");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault(); // prevent page reload
+
+            const userInput = input.value;
+
+            try {
+                const res = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ input: userInput })
+                });
+
+                const data = await res.json();
+                responseText.textContent = data.response;
+            } catch (error) {
+                responseText.textContent = "Error: " + error.message;
+            }
+
+            input.value = ""; // clear input
+        });
+    </script>
+</body>
+</html>
