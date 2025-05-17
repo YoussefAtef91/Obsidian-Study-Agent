@@ -32,4 +32,5 @@ def home(request: Request):
 @app.post("/chat")
 def chat(q: Question):
     response = agent.invoke({"input": q.input})
-    return {"response": response}
+    print(response)
+    return {"response": response['output']}

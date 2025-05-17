@@ -124,13 +124,16 @@ def build_agent(cfg: DictConfig):
             match = re.search(r'filename:\s*(.*?),\s*content:\s*(.*)', note_input, re.DOTALL)
             filename = match.group(1).strip().replace('_', ' ')
             content = match.group(2).strip()
-            content.replace("<endofnotes>", "")
+            content = content.replace("<endofnotes>", "")
             
             if not content:
                 return "No content provided."
 
             content = content.encode("utf-8").decode("unicode_escape")
             os.makedirs(base_dir, exist_ok=True)
+
+            if not filename.endswith(".md"):
+                filename += ".md"
 
             filepath = os.path.join(base_dir, f"{filename}")
             with open(filepath, "a", encoding="utf-8") as f:
