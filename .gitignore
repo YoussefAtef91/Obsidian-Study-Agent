@@ -1,6 +1,8 @@
 # Mac OS-specific storage files
 .DS_Store
 
+outputs/
+
 # vim
 *.swp
 *.swo

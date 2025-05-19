@@ -12,7 +12,7 @@ def create_vector_db(cfg: DictConfig):
     load_dotenv()
     google_api_key = os.getenv("GOOGLE_API_KEY")
 
-    loader = DirectoryLoader(r"C:\Users\Youssef Atef\Desktop\ISLP", glob="**/*.md")
+    loader = DirectoryLoader(fr"C:\Users\Youssef Atef\Desktop\{cfg.vault.name}", glob="**/*.md")
     documents = loader.load()
 
     def clean_page_content(doc: Document) -> Document:

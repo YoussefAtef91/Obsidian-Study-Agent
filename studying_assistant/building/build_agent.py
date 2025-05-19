@@ -92,9 +92,6 @@ def build_agent(cfg: DictConfig):
     You can also use WebSearch tool to validate you notes.
     Add this token at the end of the notes <endofnotes>
 
-    Previous conversation:
-    {chat_history}
-
     Use the following format:
 
     Question: the input question you must answer
@@ -113,7 +110,7 @@ def build_agent(cfg: DictConfig):
 
     agent_prompt = PromptTemplate(
         template=react_template,
-        input_variables=["tools", "tool_names", "input", "agent_scratchpad", "chat_history"]
+        input_variables=["tools", "tool_names", "input", "agent_scratchpad"]
     )
 
     def write_to_markdown(note_input: str, base_dir: str = fr"C:\Users\Youssef Atef\Desktop\{cfg.vault.name}") -> str:
@@ -152,12 +149,12 @@ def build_agent(cfg: DictConfig):
 
     tools = [web_tool, note_tool, write_note_tool]
     agent = create_react_agent(llm, tools, agent_prompt)
-    memory = ConversationBufferMemory(
-        memory_key="chat_history",
-        return_messages=True
-    )
+    # memory = ConversationBufferMemory(
+    #     memory_key="chat_history",
+    #     return_messages=True
+    # )
     agent_executor = AgentExecutor(
-        agent=agent, tools=tools, verbose=True, handle_parsing_errors=True, memory=memory
+        agent=agent, tools=tools, verbose=True, handle_parsing_errors=True
     )
 
     return agent_executor
