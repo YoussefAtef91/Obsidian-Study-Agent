@@ -9,6 +9,15 @@ AI-powered Retrieval-Augmented Generation (RAG) agent that accesses and updates 
 * **Auto note-taking:** Writes and updates markdown notes autonomously.
 * **FastAPI web app:** Easy-to-use chatbot interface for interaction.
 
+## Tools
+
+* **FAISS** to create a vector database.
+* **gemini-1.5-flash** as the large language model.
+* **SerpAPI** for internet search.
+* **LangChain** to create the agent.
+* **FastAPI** for web interface.
+* **MongoDB** to store sessions.
+
 ## Installation
 
 ```bash
