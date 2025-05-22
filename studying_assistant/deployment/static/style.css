@@ -1,0 +1,300 @@
+:root {
+    --primary-purple: #6f42c1;
+    --secondary-purple: #8a63d2;
+    --dark-bg: #1a1a1a;
+    --darker-bg: #0f0f0f;
+    --sidebar-bg: #2d2d2d;
+    --card-bg: #3a3a3a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #4a4a4a;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-container {
+    height: 100vh;
+    display: flex;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 300px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h4 {
+    color: var(--primary-purple);
+    margin: 0;
+    font-weight: 600;
+}
+
+.new-session-btn {
+    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+    border: none;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.new-session-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.3);
+    color: white;
+}
+
+.sessions-container {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.session-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    color: var(--text-primary);
+    display: block;
+}
+
+.session-item:hover {
+    background-color: var(--primary-purple);
+    transform: translateX(4px);
+    color: white;
+    text-decoration: none;
+}
+
+.session-item.active {
+    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+    border-color: var(--secondary-purple);
+    color: white;
+}
+
+.session-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.session-item.active .session-time {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.session-item:hover .session-time {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.delete-session {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.session-item:hover .delete-session {
+    opacity: 1;
+}
+
+.delete-session:hover {
+    color: #dc3545;
+}
+
+/* Chat Area Styles */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-bg);
+}
+
+.chat-header {
+    padding: 1rem 1.5rem;
+    background-color: var(--darker-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+}
+
+.message {
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-user {
+    text-align: right;
+}
+
+.message-user .message-content {
+    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 18px 18px 4px 18px;
+    display: inline-block;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.message-agent {
+    text-align: left;
+}
+
+.message-agent .message-content {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 18px 18px 18px 4px;
+    display: inline-block;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+/* Input Area */
+.chat-input-container {
+    padding: 1rem 1.5rem;
+    background-color: var(--darker-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.input-group {
+    position: relative;
+}
+
+.chat-input::placeholder {
+color: #9f9f9f;
+opacity: 1;
+}
+
+.chat-input {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 25px;
+    padding: 0.75rem 3rem 0.75rem 1rem;
+    resize: none;
+    min-height: 50px;
+    max-height: 150px;
+}
+
+.chat-input:focus {
+    background-color: var(--card-bg);
+    border-color: var(--primary-purple);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
+}
+
+.send-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.4);
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 1rem;
+}
+
+.spinner-border {
+    color: var(--primary-purple);
+}
+
+/* Welcome message */
+.welcome-message {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.welcome-message i {
+    font-size: 3rem;
+    color: var(--primary-purple);
+    margin-bottom: 1rem;
+}
+
+/* Scrollbar Styles */
+.sessions-container::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sessions-container::-webkit-scrollbar-track,
+.chat-messages::-webkit-scrollbar-track {
+    background: var(--darker-bg);
+}
+
+.sessions-container::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb {
+    background: var(--primary-purple);
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 250px;
+    }
+    
+    .message-content {
+        max-width: 85% !important;
+    }
+}
